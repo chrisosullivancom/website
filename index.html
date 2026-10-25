@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris O'Sullivan</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            border-left: 50px solid #ff6600;
+            border-right: 50px solid #ff6600;
+            padding: 0 10px;
+			background-color: white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            margin-top: 50px;
+			background-color: white;
+        }
+        .image-container a {
+            text-decoration: none;
+        }
+        .image-container img {
+            width: 500px;
+            height: 300px;
+            border-radius: 50px;
+            transition: transform 0.3s;
+
+			background-color: white;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">	
+		<a href="concerts.html">
+            <img src="./pics/music.png" alt="Concerts">
+        </a>
+        <a href="mountains.html">
+            <img src="./pics/mountain.png" alt="Mountains">
+        </a>
+        <a href="countries.html">
+            <img src="./pics/world.png" alt="Countries">
+        </a>
+    </div>
+</body>
+</html>
+

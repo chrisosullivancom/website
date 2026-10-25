@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Data</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <img src="./pics/visited.jpg" alt="Countries visited" style="max-height: 1200px; max-width: 1200px;"><br><br>
+    <table id="data-table">
+        <thead>
+            <tr><th>Country</th><th>Years visited</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+	
+async function fetchCSV() {
+    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ3vNK_XOEqE-WVt751J04cGCvhkwx1Ad2OvHpmOvOo4OPZNCgm1dZaWgeR3wgkasuQw8B46_IN0vPo/pub?gid=1151071495&single=true&output=csv";  // Replace with your Google Sheets CSV URL
+    const response = await fetch(url);
+    const data = await response.text();
+    
+    const rows = data.split("\n").map(row => {
+        return row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+    });
+
+    const tableBody = document.querySelector("#data-table tbody");
+    tableBody.innerHTML = "";
+    rows.forEach(row => {
+        let tr = document.createElement("tr");
+        row.forEach(cell => {
+            let td = document.createElement("td");
+            td.textContent = cell.replace(/(^"|"$)/g, ""); // Remove surrounding quotes
+            tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+    });
+}
+        fetchCSV();
+    </script>
+
+</body>
+</html>
